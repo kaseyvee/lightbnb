@@ -27,24 +27,24 @@ CREATE TABLE properties (
   province VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
 
-  active BOOLEA NOT NULL DEFAULT TRUE,
+  active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE reservations (
   id SERIAL PRIMARY KEY NOT NULL,
   property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
-  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
 
   start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
+  end_date DATE NOT NULL
 );
 
 CREATE TABLE property_reviews (
   id SERIAL PRIMARY KEY NOT NULL,
   guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
-  reservation_id INTEGER REFERENCES reservations(id) ON DELETE CASCADE
+  reservation_id INTEGER REFERENCES reservations(id) ON DELETE CASCADE,
 
   rating SMALLINT NOT NULL DEFAULT 0,
-  mesage TEXT,
+  message TEXT
 );
